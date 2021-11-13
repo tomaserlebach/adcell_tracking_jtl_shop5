@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jtlshopplugin>
+    <Name>ADCELL Tracking</Name>
+    <Description>Plugin um die basis Funktion des ADCELL Trackings einzubinden</Description>
+    <Author>Tomas Erlebach</Author>
+    <URL>https://github.com/tomaserlebach</URL>
+    <PluginID>adcell_tracking_jtl_shop5</PluginID>
+    <XMLVersion>100</XMLVersion>
+    <MinShopVersion>5.0.0</MinShopVersion>
+    <CreateDate>2021-11-13</CreateDate>
+    <Version>1.0.0</Version>
+    <Install>
+        <ServicesRequiringConsent>
+            <Vendor>
+                <ID>adcell_tracking</ID>
+                <Company>ADDCELL</Company>
+                <Localization iso="GER">
+                    <Name>ADCELL Tracking</Name>
+                    <Purpose>Marketing</Purpose>
+                    <Description>Affiliate Marketing</Description>
+                    <PrivacyPolicy>https://www.adcell.de/datenschutz</PrivacyPolicy>
+                </Localization>
+            </Vendor>
+        </ServicesRequiringConsent>
+        <Adminmenu>
+            <Settingslink sort="2">
+                <Name>Einstellungen</Name>
+                <Setting type="text" initialValue="" sort="1" conf="Y">
+                    <Name>ProgrammID (ADCELL)</Name>
+                    <Description></Description>
+                    <ValueName>programId</ValueName>
+                </Setting>
+                <Setting type="text" initialValue="" sort="1" conf="Y">
+                    <Name>EventID (ADCELL)</Name>
+                    <Description></Description>
+                    <ValueName>eventId</ValueName>
+                </Setting>
+            </Settingslink>
+        </Adminmenu>
+    </Install>
+</jtlshopplugin>
