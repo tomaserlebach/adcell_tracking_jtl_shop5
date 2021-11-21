@@ -26,12 +26,22 @@ class Bootstrap extends Bootstrapper
 
         parent::boot($dispatcher);
 
-
         $dispatcher->listen('shop.hook.' . \HOOK_BESTELLABSCHLUSS_PAGE, function ($args) use ($plugin, $smarty) {
             $smarty->assign('order', $args['oBestellung']);
 
             $smarty->assign('order_complete', true);
         });
+
+        /* Homepage */
+        $dispatcher->listen('shop.hook.' . \HOOK_SEITE_PAGE, function ($args) use ($plugin, $smarty) {
+
+            $currentPage = str_replace('?'.$_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']);
+
+            if($currentPage === '/') {
+                $smarty->assign('adcell_is_homepage', true);
+            }
+        });
+
 
         $dispatcher->listen('shop.hook.' . \HOOK_SMARTY_OUTPUTFILTER, function ($args) use ($plugin, $smarty) {
 
