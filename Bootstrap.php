@@ -23,6 +23,7 @@ class Bootstrap extends Bootstrapper
     {
         $plugin = $this->getPlugin();
         $smarty = Shop::Smarty();
+        $pageType = Shop::getPageType();
 
         parent::boot($dispatcher);
 
@@ -42,6 +43,40 @@ class Bootstrap extends Bootstrapper
             }
         });
 
+        /* Category Page */
+        $dispatcher->listen('shop.hook.' . \HOOK_FILTER_ENDE, function ($args) use ($plugin, $smarty) {
+            #die(var_dump($args));
+            $smarty->assign('adcell_is_categorypage', true);
+
+        });
+
+        /* Product Page */
+        $dispatcher->listen('shop.hook.' . \HOOK_ARTIKEL_PAGE, function ($args) use ($plugin, $smarty, $pageType) {
+
+                $smarty->assign('adcell_is_productpage', true);
+
+        });
+
+        /* Search Page */
+        $dispatcher->listen('shop.hook.' . \HOOK_NAVI_SUCHE, function ($args) use ($plugin, $smarty, $pageType) {
+
+                $smarty->assign('adcell_is_search', true);
+
+        });
+
+        /* Basket */
+        $dispatcher->listen('shop.hook.' . \HOOK_WARENKORB_PAGE, function ($args) use ($plugin, $smarty, $pageType) {
+
+            $smarty->assign('adcell_is_basket', true);
+
+        });
+
+        /* Checkout */
+        $dispatcher->listen('shop.hook.' . \HOOK_BESTELLVORGANG_PAGE, function ($args) use ($plugin, $smarty, $pageType) {
+
+                $smarty->assign('adcell_is_checkout', true);
+
+        });
 
         $dispatcher->listen('shop.hook.' . \HOOK_SMARTY_OUTPUTFILTER, function ($args) use ($plugin, $smarty) {
 
